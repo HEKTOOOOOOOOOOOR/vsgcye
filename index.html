@@ -67,7 +67,7 @@
   </style>
 </head>
 <body>
- 
+  
   <h1>Prolog автомобили с различни правила и GIF</h1>
 
   <textarea id="prolog-input">
@@ -75,6 +75,9 @@
 is_electric(X).
 is_suv(X).
 is_luxury(X).
+is_sedan(X).
+is_fast(X).
+is_expensive(X).
   </textarea><br />
   <button onclick="runProlog()">Изпълни</button>
 
@@ -85,25 +88,53 @@ is_luxury(X).
   <script>
     const session = pl.create();
 
-    // База знания с автомобили и правила
+    // Разширена база знания с повече автомобили и правила
     const knowledge = `
+      % Факти за автомобили
       car(tesla_model_s).
       car(bmw_x5).
       car(audi_a8).
+      car(mercedes_s_class).
+      car(porsche_cayenne).
+      car(toyota_corolla).
+      car(ford_mustang).
+      car(nissan_leaf).
 
-      % Електрически автомобили
+      % Категории
       electric(tesla_model_s).
+      electric(nissan_leaf).
 
-      % SUV автомобили
       suv(bmw_x5).
+      suv(porsche_cayenne).
 
-      % Луксозни автомобили
       luxury(audi_a8).
+      luxury(mercedes_s_class).
+      luxury(tesla_model_s). % Може да бъде и луксозен
 
-      % Правила
+      sedan(audi_a8).
+      sedan(mercedes_s_class).
+      sedan(tesla_model_s).
+      sedan(toyota_corolla).
+
+      sporty(ford_mustang).
+      sporty(tesla_model_s). % Може да бъде и спортен
+
+      affordable(toyota_corolla).
+      affordable(nissan_leaf).
+
+      % Правила (могат да се разширяват)
       is_electric(X) :- electric(X).
       is_suv(X) :- suv(X).
       is_luxury(X) :- luxury(X).
+      is_sedan(X) :- sedan(X).
+      is_sporty(X) :- sporty(X).
+      is_affordable(X) :- affordable(X).
+
+      % Допълнителни, по-сложни правила
+      is_fast(X) :- sporty(X) ; electric(X). % Бърз е, ако е спортен или електрически
+      is_expensive(X) :- luxury(X) ; (suv(X), \+ affordable(X)). % Скъп е, ако е луксозен ИЛИ е SUV и НЕ е достъпен
+      can_be_family_car(X) :- suv(X) ; sedan(X). % Може да бъде семейна кола, ако е SUV или седан
+      eco_friendly(X) :- electric(X). % Екологичен е, ако е електрически
     `;
 
     session.consult(knowledge);
@@ -113,7 +144,10 @@ is_luxury(X).
       bmw_x5: '<img src="https://media.giphy.com/media/26n6WywJyh39n1pBu/giphy.gif" class="car-gif" alt="BMW X5" />',
       audi_a8: '<img src="https://media.giphy.com/media/xUOwGgw2f0Qt2L1fZe/giphy.gif" class="car-gif" alt="Audi A8" />',
       mercedes_s_class: '<img src="https://media.giphy.com/media/3o7TKQbHwpMMU17Eja/giphy.gif" class="car-gif" alt="Mercedes S-Class" />',
-      porsche_cayenne: '<img src="https://media.giphy.com/media/l0MYB8Ory7Hqefo9a/giphy.gif" class="car-gif" alt="Porsche Cayenne" />'
+      porsche_cayenne: '<img src="https://media.giphy.com/media/l0MYB8Ory7Hqefo9a/giphy.gif" class="car-gif" alt="Porsche Cayenne" />',
+      toyota_corolla: '<img src="https://media.giphy.com/media/l4pTc5p9D2tX3x1UQ/giphy.gif" class="car-gif" alt="Toyota Corolla" />', // Примерни GIF-ове, може да ги замените
+      ford_mustang: '<img src="https://media.giphy.com/media/l4pTc5p9D2tX3x1UQ/giphy.gif" class="car-gif" alt="Ford Mustang" />',
+      nissan_leaf: '<img src="https://media.giphy.com/media/l4pTc5p9D2tX3x1UQ/giphy.gif" class="car-gif" alt="Nissan Leaf" />'
     };
 
     function runProlog() {
