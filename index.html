@@ -5,97 +5,85 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Prolog автомобили с различни правила и GIF</title>
   <style>
-    /* General body styling */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      max-width: 750px; /* Slightly wider for better content flow */
+      max-width: 750px;
       margin: 30px auto;
-      background: #E0F2F7; /* Very light blue background */
-      color: #333; /* Darker text for readability */
-      padding: 25px; /* Slightly more padding */
-      box-shadow: 0 5px 20px rgba(0,0,0,0.15); /* More prominent shadow */
-      border-radius: 15px; /* Softer rounded corners */
+      background: #E0F2F7;
+      color: #333;
+      padding: 25px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+      border-radius: 15px;
       text-align: center;
-      line-height: 1.6; /* Better readability for paragraphs */
+      line-height: 1.6;
     }
-
-    /* Heading styling */
     h1 {
-      color: #004080; /* Darker blue for headings */
+      color: #004080;
       margin-bottom: 25px;
-      font-size: 2.2em; /* Slightly larger heading */
+      font-size: 2.2em;
     }
-
-    /* Textarea styling */
     textarea {
       width: 90%;
-      max-width: 650px; /* Wider textarea */
-      height: 150px; /* Taller textarea */
-      font-family: 'Consolas', 'Monaco', monospace; /* More code-friendly font */
-      font-size: 17px; /* Slightly larger font */
+      max-width: 650px;
+      height: 150px;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 17px;
       margin-top: 15px;
-      border-radius: 8px; /* More rounded corners */
-      border: 3px solid #007BFF; /* Primary blue border */
-      padding: 12px; /* More padding inside */
+      border-radius: 8px;
+      border: 3px solid #007BFF;
+      padding: 12px;
       resize: vertical;
-      box-shadow: inset 0 1px 5px rgba(0,0,0,0.1); /* Subtle inner shadow */
+      box-shadow: inset 0 1px 5px rgba(0,0,0,0.1);
     }
-
-    /* Button styling */
     button {
       margin-top: 20px;
-      padding: 12px 30px; /* Larger button */
-      font-size: 19px; /* Larger font */
-      background-color: #007BFF; /* Primary blue button */
+      padding: 12px 30px;
+      font-size: 19px;
+      background-color: #007BFF;
       border: none;
-      color: white; /* White text on button */
-      border-radius: 10px; /* More rounded corners */
+      color: white;
+      border-radius: 10px;
       cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover effect */
-      box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4); /* Blue shadow for button */
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
     }
     button:hover {
-      background-color: #0056b3; /* Darker blue on hover */
-      transform: translateY(-2px); /* Slight lift effect */
+      background-color: #0056b3;
+      transform: translateY(-2px);
     }
     button:active {
-      transform: translateY(0); /* Press down effect */
+      transform: translateY(0);
     }
-
-    /* Result display area */
     #result {
       margin-top: 25px;
-      font-size: 19px; /* Slightly larger font */
-      min-height: 40px; /* Taller min-height */
+      font-size: 19px;
+      min-height: 40px;
       font-weight: bold;
-      color: #0056b3; /* Medium blue for results */
-      background-color: #F0F8FF; /* Lightest blue background for results */
+      color: #0056b3;
+      background-color: #F0F8FF;
       padding: 15px;
       border-radius: 10px;
-      border: 1px solid #ADD8E6; /* Light blue border */
+      border: 1px solid #ADD8E6;
     }
     #result p {
-        margin: 5px 0; /* Adjust paragraph spacing within result */
+      margin: 5px 0;
     }
-
-
-    /* Car animation container */
     .car-container {
       margin-top: 35px;
-      min-height: 180px; /* Taller container */
+      min-height: 180px;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #D1EEFC; /* Light blue background for car container */
-      border-radius: 15px; /* More rounded corners */
-      box-shadow: 0 5px 15px rgba(0, 100, 200, 0.2); /* Blue shadow */
+      background: #D1EEFC;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 100, 200, 0.2);
       padding: 20px;
     }
     .car-gif {
-      max-width: 220px; /* Slightly larger GIF */
-      border-radius: 15px; /* More rounded corners */
-      box-shadow: 0 0 15px rgba(0, 70, 140, 0.6); /* Deeper blue shadow for GIF */
-      border: 3px solid #0056b3; /* Blue border around GIF */
+      max-width: 220px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 70, 140, 0.6);
+      border: 3px solid #0056b3;
     }
   </style>
 </head>
@@ -104,7 +92,6 @@
   <h1>Prolog автомобили с различни правила и GIF</h1>
 
   <textarea id="prolog-input">
-% Примери на заявки:
 is_electric(X).
 is_suv(X).
 is_luxury(X).
@@ -121,9 +108,7 @@ is_expensive(X).
   <script>
     const session = pl.create();
 
-    // Разширена база знания с повече автомобили и правила
     const knowledge = `
-      % Факти за автомобили
       car(tesla_model_s).
       car(bmw_x5).
       car(audi_a8).
@@ -133,7 +118,6 @@ is_expensive(X).
       car(ford_mustang).
       car(nissan_leaf).
 
-      % Категории
       electric(tesla_model_s).
       electric(nissan_leaf).
 
@@ -155,7 +139,6 @@ is_expensive(X).
       affordable(toyota_corolla).
       affordable(nissan_leaf).
 
-      % Правила (могат да се разширяват)
       is_electric(X) :- electric(X).
       is_suv(X) :- suv(X).
       is_luxury(X) :- luxury(X).
@@ -163,7 +146,6 @@ is_expensive(X).
       is_sporty(X) :- sporty(X).
       is_affordable(X) :- affordable(X).
 
-      % Допълнителни, по-сложни правила
       is_fast(X) :- sporty(X) ; electric(X).
       is_expensive(X) :- luxury(X) ; (suv(X), \\+ affordable(X)).
       can_be_family_car(X) :- suv(X) ; sedan(X).
@@ -173,14 +155,14 @@ is_expensive(X).
     session.consult(knowledge);
 
     const carAnimations = {
-      tesla_model_s: '<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmYxMzJ5Nnl2dWJ4M2ltZDRwOHR5dmpjcm9jdHg2ZWh3amQ1N3Q5OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o6Mb6VotF3USFLl7y/giphy.gif" />',
-      bmw_x5: '<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmNzYXE1MnVmb3QxZXJmbHhmems3d2pzdmQ3MWlveWlvaHdneHJrbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/twXer9ExHdTvwt2vpt/giphy.gif" />',
-      audi_a8: '<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXB2YXNiNDhhZ25waDh0YXJuZWl5b215d3ZqbWVvOGZqbmZvd2k3OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YOpL4uCbRX4BCpMs34/giphy.gif" />',
-      mercedes_s_class: '<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZndkMXhtYWI4Z2lucjBiYThodzlpZHQ0aXkwd2hrNzIweW4zcGM0bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/14n9QTjnkqDGtG/giphy.gif" />',
-      porsche_cayenne: '<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWtzNHpqZndqeGxnbzBmem43amtpYWo0b3l6b3owd2tuY21ucXIyZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/OcfB9PbcFFckTtWofw/giphy.gif" />',
-      toyota_corolla: '<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3Bxc2NreXZtZTBhM3p4ajZmdGYyZmZzbjhvdnczN2sxZWw2cGM5eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KGfBPYOPN7Eomn4Oud/giphy.gif" />',
-      ford_mustang: '<img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTAxNmQ0YTNoY3VyMXhlYmg4dm9zYWJzMjZlcXByaDF4eWRrdmtwYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/eMCv2l6woA6cpPKZ2F/giphy.gif" />',
-      nissan_gtr: '<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTVyODAxZWp5Nm1jZG5leWl3Zm5oNnZ5ZGtkZDJwNG5pMWVkM2kwayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5psaWjwlPW2ju/giphy.gif" />'
+      tesla_model_s: '<img class="car-gif" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmYxMzJ5Nnl2dWJ4M2ltZDRwOHR5dmpjcm9jdHg2ZWh3amQ1N3Q5OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o6Mb6VotF3USFLl7y/giphy.gif" alt="Tesla Model S" />',
+      bmw_x5: '<img class="car-gif" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmNzYXE1MnVmb3QxZXJmbHhmems3d2pzdmQ3MWlveWlvaHdneHJrbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/twXer9ExHdTvwt2vpt/giphy.gif" alt="BMW X5" />',
+      audi_a8: '<img class="car-gif" src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXB2YXNiNDhhZ25waDh0YXJuZWl5b215d3ZqbWVvOGZqbmZvd2k3OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YOpL4uCbRX4BCpMs34/giphy.gif" alt="Audi A8" />',
+      mercedes_s_class: '<img class="car-gif" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZndkMXhtYWI4Z2lucjBiYThodzlpZHQ0aXkwd2hrNzIweW4zcGM0bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/14n9QTjnkqDGtG/giphy.gif" alt="Mercedes S-Class" />',
+      porsche_cayenne: '<img class="car-gif" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWtzNHpqZndqeGxnbzBmem43amtpYWo0b3l6b3owd2tuY21ucXIyZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/OcfB9PbcFFckTtWofw/giphy.gif" alt="Porsche Cayenne" />',
+      toyota_corolla: '<img class="car-gif" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3Bxc2NreXZtZTBhM3p4ajZmdGYyZmZzbjhvdnczN2sxZWw2cGM5eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KGfBPYOPN7Eomn4Oud/giphy.gif" alt="Toyota Corolla" />',
+      ford_mustang: '<img class="car-gif" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTAxNmQ0YTNoY3VyMXhlYmg4dm9zYWJzMjZlcXByaDF4eWRrdmtwYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/eMCv2l6woA6cpPKZ2F/giphy.gif" alt="Ford Mustang" />',
+      nissan_leaf: '<img class="car-gif" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTVyODAxZWp5Nm1jZG5leWl3Zm5oNnZ5ZGtkZDJwNG5pMWVkM2kwayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5psaWjwlPW2ju/giphy.gif" alt="Nissan Leaf" />'
     };
 
     function runProlog() {
